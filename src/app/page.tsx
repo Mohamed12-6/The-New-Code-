@@ -11,6 +11,9 @@ import logo9 from "../../public/1 (4).jpg";
 
 import { Tajawal } from "next/font/google";
 import { Lato } from "next/font/google";
+import Link from "next/link";
+import { useState } from "react";
+import Services from "./services/page";
 
 
 const tajawal = Tajawal({
@@ -64,11 +67,55 @@ const team = [{
     img: teamImg,
 },
 ];
+const testimonials = [
+    {
+        name: "نداء أحمد",
+        role: "Business Mom",
+        image: logo9,
+        feedback: "خدمة ممتازة للغاية كانت فعلياً مفيدة وموثوقة. أبدع الفريق في التنفيذ وكان دقيقًا وملتزمًا بالمواعيد. أنصح بالتعامل معهم لكل من يبحث عن جودة واحترافية تامة.",
+        rating: 5,
+    },
+    {
+        name: "نداء أحمد",
+        role: "Frontend Developer",
+        image: logo9,
+        feedback: "خدمة ممتازة للغاية كانت فعلياً مفيدة وموثوقة. أبدع الفريق في التنفيذ وكان دقيقًا وملتزمًا بالمواعيد. أنصح بالتعامل معهم لكل من يبحث عن جودة واحترافية تامة.",
+
+        rating: 5,
+    },
+    {
+        name: "نداء أحمد",
+        role: "Frontend Developer",
+        image: logo9,
+        feedback: "خدمة ممتازة للغاية كانت فعلياً مفيدة وموثوقة. أبدع الفريق في التنفيذ وكان دقيقًا وملتزمًا بالمواعيد. أنصح بالتعامل معهم لكل من يبحث عن جودة واحترافية تامة.",
+
+        rating: 4,
+    },
+];
+
+
 export default function Home() {
+    const [activeBtn, setActiveBtn] = useState(null);
+
+    const [index, setIndex] = useState(0);
+    const nextTestimonial = () => {
+        setActiveBtn("next");
+
+        setIndex((prev) => (prev + 1) % testimonials.length);
+    };
+
+    const prevTestimonial = () => {
+        setActiveBtn("prev");
+
+        setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    };
+    const current = testimonials[index];
+
+
     return (
 
-        <main className={`min-h-screen font-sans text-gray-900 relative flex flex-col items-center  w-full`}>
-            <div className="relative z-10">
+        <main className={`min-h-screen font-sans text-gray-900 relative flex flex-col items-center  w-full `}>
+            <div className="relative z-10 ">
 
 
                 <section
@@ -95,32 +142,35 @@ export default function Home() {
                                 تصميمية وبرمجية مبتكرة
                             </span>
                         </p>
-
-                        <button
-                            className="bg-blue-600 hover:bg-blue-700 text-white my-5 text-lg font-medium px-20 py-3 rounded-full shadow-md hover:shadow-xl transition-all duration-300 ease-in-out"
-                        >
-                            اتصل الآن
-                        </button>
+                        <Link href="/contact" className="mt-6">
+                            <button
+                                className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                            >
+                                اتصل الآن
+                            </button>
+                        </Link>
                     </div>
                 </section>
 
 
 
-                <section className="max-w-6xl mx-auto px-6 py-12">
-
-                    <h2 className={`text-3xl font-extrabold text-center mb-8 text-blue-700 pb-1 relative ${tajawal.className}`}>
+                <section className="w-full px-6 py-12 bg-gradient-to-b from-white to-[#ededed]">
+                    <h2
+                        className={`text-3xl font-extrabold text-center mb-8 text-blue-700 pb-1 relative ${tajawal.className}`}
+                    >
                         <span className="text-black">من </span>
                         <span>نحن ؟</span>
                         <span className="absolute left-1/2 bottom-0 -translate-x-1/2 w-24 border-b-4 border-blue-700 translate-y-2"></span>
-
                     </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
                         <div className="order-last md:order-none">
                             <h3 className={`text-2xl font-bold mb-4 text-gray-900 ${tajawal.className}`}>
                                 خطوتك الأولى <span className="text-blue-700">نحو القمة</span>
                             </h3>
-                            <p className={`text-lg text-gray-700 leading-loose max-w-2xl mx-auto text-justify space-y-2 ${lato.className}`}>
+                            <p
+                                className={`text-lg text-gray-700 leading-loose max-w-2xl mx-auto text-justify space-y-2 ${lato.className}`}
+                            >
                                 <span className="block">كوننا روّاد التقنية، نعمل لنجعل كل عميل رائدًا في مجاله، ونرتقي</span>
                                 <span className="block">بمشاريعه نحو آفاق النجاح، لنكون خياره الأول في تقنية المعلومات</span>
                                 <span className="block">ونحافظ على ريادتنا في عالم البرمجة.</span>
@@ -128,18 +178,20 @@ export default function Home() {
                         </div>
 
                         <div className="flex justify-center">
-                            <Image src={logo8} alt="فريق عمل" className="max-w-xs" />
+                            <Image src={logo7} alt="فريق عمل" className="max-w-xs" />
                         </div>
 
                         <div className="flex justify-center">
-                            <Image src={logo7} alt="رجل على قمة جبل" className="max-w-xs" />
+                            <Image src={logo8} alt="فريق عمل" className="max-w-xs" />
                         </div>
 
                         <div className="order-last md:order-none">
                             <h3 className={`text-2xl font-bold mb-4 text-gray-900 ${tajawal.className}`}>
                                 اهدافك <span className="text-blue-700">هي اهدافنا</span>
                             </h3>
-                            <p className={`text-lg text-[#666666] max-w-2xl mx-auto text-justify space-y-2 ${lato.className}`}>
+                            <p
+                                className={`text-lg text-[#666666] max-w-2xl mx-auto text-justify space-y-2 ${lato.className}`}
+                            >
                                 <span className="block">في واقعك، نجمع نخبة من الخبراء في مجالات متعددة</span>
                                 <span className="block">لنحوّل الأفكار إلى إنجازات ملموسة. نعمل بشغف</span>
                                 <span className="block">وإتقان لتمكين قدرات عملائنا، ودعم مشاريعهم </span>
@@ -147,7 +199,6 @@ export default function Home() {
                                 <span className="block">نحول أحلامك إلى واقع يلامس القمة.</span>
                             </p>
                         </div>
-
                     </div>
                 </section>
 
@@ -155,56 +206,7 @@ export default function Home() {
 
 
 
-
-                <section className="w-full py-16 bg-white ">
-                    <h2 className="text-3xl font-[Tajawal] font-medium text-gray-800 mb-12 text-center">خدماتنا</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6 ">
-                        {[{
-                            title: "UI/UX DESIGN",
-
-                            img: "/2.jpg",
-                        },
-                        {
-                            title: "تصميم وبرمجة مواقع إلكترونية",
-                            img: "/4.jpg",
-                        },
-                        {
-                            title: "GRAPHIC DESIGN",
-
-                            img: "/1.jpg",
-                        },
-                        {
-                            title: "GRAPHIC DESIGN",
-                            img: "/e0b2ea6f0b906542cb0044f14a2b9aa949008fe0.jpg",
-                        },
-                        {
-                            title: "برمجة الألعاب",
-                            img: "/5.jpg",
-                        },
-                        {
-                            title: "برمجة وتصميم تطبيقات",
-
-                            img: "/3.jpg",
-                        },
-                        ].map((service, i) => (
-                            <div
-                                key={i}
-                                className=" rounded-2xl  hover:shadow-2xl transition p-0 "
-                            >
-                                <div className="h-40 flex items-center justify-center rounded-xl mb-4 overflow-hidden ">
-                                    <Image
-                                        src={service.img}
-                                        alt={service.title}
-                                        width={300}
-                                        height={160}
-                                        className="object-cover rounded-xl w-full h-40"
-                                    />
-                                </div>
-                                <h3 className="text-xl font-[Tajawal] font-bold text-gray-800 mb-0">{service.title}</h3>
-                            </div>
-                        ))}
-                    </div>
-                </section>
+                <Services></Services>
 
 
 
@@ -218,7 +220,7 @@ export default function Home() {
                         {team.map((t, idx) => (
                             <div
                                 key={idx}
-                                className="relative bg-blue-900 text-white rounded-2xl pt-16 pb-8 px-6 flex flex-col items-center shadow-xl"
+                                className="relative bg-[#04356f] text-white rounded-2xl pt-16 pb-8 px-6 flex flex-col items-center shadow-xl"
                             >
                                 <div className="absolute -top-12">
                                     <Image
@@ -275,9 +277,12 @@ export default function Home() {
                                     <h2 className="text-3xl md:text-4xl font-[Tajawal] font-medium mb-6">
                                         لتبدأ معنا قصة نجاحك
                                     </h2>
-                                    <button className="bg-gradient-to-r from-[#1760bb] to-[#0e3d77] hover:from-[#0e3d77] hover:to-[#1760bb] transition-all text-white font-[Tajawal] font-medium text-lg px-8 py-2 rounded-lg shadow">
-                                        ابدأ مشروعك
-                                    </button>
+                                    <Link href="/contact" className="mt-6">
+                                        <button className="cursor-pointer bg-gradient-to-r from-[#1760bb] to-[#0e3d77] hover:from-[#0e3d77] hover:to-[#1760bb] transition-all text-white font-[Tajawal] font-medium text-lg px-8 py-2 rounded-lg shadow">
+                                            ابدأ مشروعك
+                                        </button>
+                                    </Link>
+
                                 </div>
 
                                 <div className="hidden md:block pointer-events-none absolute bottom-0 right-6 translate-y-6 z-20">
@@ -307,95 +312,100 @@ export default function Home() {
                 </section>
 
 
-                <section className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center px-4 md:px-12 py-12 md:py-16 gap-8">
-                    <div className="w-full md:w-1/2 text-right">
-                        <h3 className="text-lg sm:text-xl md:text-3xl font-[Tajawal] font-bold text-[#1760bb] mb-3">
-                            آراء العملاء عن تجربتهم معنا
-                        </h3>
-                        <p className="text-gray-700 text-sm sm:text-base md:text-lg mb-6 max-w-md font-[Tajawal] font-medium mx-auto md:mx-0">
-                            اطلع على تجارب عملائنا السعداء واكتشف كيف ساهمت خدماتنا في تعزيز نجاح مشاريعهم وتحقيق أهدافهم.
-                        </p>
 
-                        <div className="hidden md:flex justify-start gap-3">
-                            <button
-                                aria-label="التالي"
-                                className="w-9 h-9 rounded-full bg-[#1760bb] text-white flex items-center justify-center shadow hover:bg-[#1c3879] transition"
-                            >
-                                <span className="text-lg">&#8594;</span>
-                            </button>
-                            <button
-                                aria-label="السابق"
-                                className="w-9 h-9 rounded-full bg-[#1760bb] text-white flex items-center justify-center shadow hover:bg-[#1c3879] transition"
-                            >
-                                <span className="text-lg">&#8592;</span>
-                            </button>
-                        </div>
-                    </div>
+                <section className="w-full flex justify-center bg-gradient-to-b from-white to-[#ededed] px-4 md:px-12 py-12 md:py-16">
+                    <div className="w-full max-w-7xl flex flex-col md:flex-row items-center justify-between gap-8">
 
-                    <div className="relative w-full md:w-[56%] max-w-xl">
-                        <span className="absolute -top-3 -right-3 z-0 h-3 w-40 sm:w-56 bg-[#1760bb] rounded-full shadow-sm" />
-                        <span className="absolute -top-3 -right-3 z-0 w-3 h-full bg-[#1760bb] rounded-r-2xl shadow-sm" />
+                        <div className="w-full md:w-1/2 text-right">
+                            <h3 className="text-lg sm:text-xl md:text-3xl font-[Tajawal] font-bold text-[#1760bb] mb-3">
+                                آراء العملاء عن تجربتهم معنا
+                            </h3>
+                            <p className="text-gray-700 text-sm sm:text-base md:text-lg mb-6 max-w-md font-[Tajawal] font-medium">
+                                اطلع على تجارب عملائنا السعداء واكتشف كيف ساهمت خدماتنا في تعزيز نجاح مشاريعهم وتحقيق أهدافهم.
+                            </p>
 
-                        <div
-                            className="relative z-10 bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-lg border border-gray-100 overflow-hidden"
-                            style={{ boxShadow: "0px 6px 24px rgba(11,23,48,0.18)" }}
-                        >
-                            <div className="absolute top-4 right-4 bg-[#1760bb] p-2 sm:p-3 rounded-md">
-                                <FaQuoteRight className="text-white text-lg sm:text-xl" />
-                            </div>
+                            <div className="hidden md:flex justify-start gap-3">
+                                <button
+                                    onClick={prevTestimonial}
+                                    className={`w-9 h-9 rounded-full flex items-center justify-center shadow transition-colors duration-200 cursor-pointer
+                ${activeBtn === "prev" ? "bg-[#1760bb] text-white" : "bg-gray-300 text-gray-700"}`}
+                                    aria-label="Previous testimonial"
+                                >
+                                    &#8592;
+                                </button>
 
-                            <div className="flex flex-col sm:flex-row-reverse gap-6 items-center sm:items-start">
-                                <div className="flex-shrink-0">
-                                    <Image
-                                        src={logo9}
-                                        alt="Client"
-                                        width={160}
-                                        height={200}
-                                        className="w-[120px] sm:w-[140px] md:w-[160px] h-[160px] sm:h-[180px] md:h-[200px] rounded-xl object-cover border border-gray-100 shadow-sm"
-                                    />
-                                </div>
-
-                                <div className="flex-1 text-center sm:text-left">
-                                    <div className="font-[Be_Vietnam_Pro] font-medium text-[#1760bb] text-base sm:text-lg">
-                                        نداء أحمد
-                                    </div>
-                                    <div className="font-[Be_Vietnam_Pro] font-normal text-xs sm:text-sm text-gray-400">
-                                        Business Mom
-                                    </div>
-
-                                    <div className="flex justify-center sm:justify-start flex-row-reverse gap-1 mt-2 text-orange-400">
-                                        {Array.from({ length: 5 }).map((_, i) => (
-                                            <FaStar key={i} size={14} />
-                                        ))}
-                                    </div>
-
-                                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed mt-4 max-w-[520px] font-[Tajawal] font-normal">
-                                        خدمة ممتازة للغاية كانت فعلياً مفيدة وموثوقة. أبدع الفريق في التنفيذ وكان دقيقًا وملتزمًا بالمواعيد.
-                                        أنصح بالتعامل معهم لكل من يبحث عن جودة واحترافية تامة.
-                                    </p>
-                                </div>
+                                <button
+                                    onClick={nextTestimonial}
+                                    className={`w-9 h-9 rounded-full flex items-center justify-center shadow transition-colors duration-200 cursor-pointer
+                ${activeBtn === "next" ? "bg-[#1760bb] text-white" : "bg-gray-300 text-gray-700"}`}
+                                    aria-label="Next testimonial"
+                                >
+                                    &#8594;
+                                </button>
                             </div>
                         </div>
 
-                        <div className="flex md:hidden justify-center gap-3 mt-6">
-                            <button
-                                aria-label="التالي"
-                                className="w-9 h-9 rounded-full bg-[#1760bb] text-white flex items-center justify-center shadow hover:bg-[#1c3879] transition"
-                            >
-                                <span className="text-lg">&#8594;</span>
-                            </button>
-                            <button
-                                aria-label="السابق"
-                                className="w-9 h-9 rounded-full bg-[#1760bb] text-white flex items-center justify-center shadow hover:bg-[#1c3879] transition"
-                            >
-                                <span className="text-lg">&#8592;</span>
-                            </button>
+                        <div className="w-full md:w-1/2 flex flex-col items-center">
+                            <div className="relative bg-white p-5 sm:p-6 md:p-8 shadow-lg rounded-[20px] custom-border w-full max-w-lg">
+
+                                <div className="absolute top-4 right-4 bg-[#1760bb] p-2 sm:p-3 rounded-md">
+                                    <FaQuoteRight className="text-white text-lg sm:text-xl" />
+                                </div>
+
+                                <div className="flex flex-col sm:flex-row-reverse gap-6 items-center sm:items-start">
+                                    <div className="relative overflow-hidden rounded-xl border border-gray-200 shadow-md">
+                                        <Image
+                                            src={current.image}
+                                            alt={current.name}
+                                            width={160}
+                                            height={200}
+                                            className="w-[120px] sm:w-[140px] md:w-[160px] h-[160px] sm:h-[180px] md:h-[200px] object-cover"
+                                        />
+                                    </div>
+
+                                    <div className="flex-1 text-center sm:text-left">
+                                        <div className="font-[Be_Vietnam_Pro] font-medium text-[#1760bb] text-base sm:text-lg">
+                                            {current.name}
+                                        </div>
+                                        <div className="font-[Be_Vietnam_Pro] text-xs sm:text-sm text-gray-400">
+                                            {current.role}
+                                        </div>
+
+                                        <div className="flex justify-center sm:justify-start flex-row-reverse gap-1 mt-2 text-orange-400">
+                                            {Array.from({ length: current.rating }).map((_, i) => (
+                                                <FaStar key={i} size={14} />
+                                            ))}
+                                        </div>
+
+                                        <p className="text-gray-600 text-sm sm:text-base leading-relaxed mt-4 max-w-[520px] font-[Tajawal]">
+                                            {current.feedback}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex md:hidden justify-center gap-3 mt-6">
+                                <button
+                                    onClick={prevTestimonial}
+                                    className={`w-9 h-9 rounded-full flex items-center justify-center shadow transition-colors duration-200 cursor-pointer
+                ${activeBtn === "prev" ? "bg-[#1760bb] text-white" : "bg-gray-300 text-gray-700"}`}
+                                    aria-label="Previous testimonial (mobile)"
+                                >
+                                    &#8592;
+                                </button>
+
+                                <button
+                                    onClick={nextTestimonial}
+                                    className={`w-9 h-9 rounded-full flex items-center justify-center shadow transition-colors duration-200 cursor-pointer
+                ${activeBtn === "next" ? "bg-[#1760bb] text-white" : "bg-gray-300 text-gray-700"}`}
+                                    aria-label="Next testimonial (mobile)"
+                                >
+                                    &#8594;
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </section>
-
-
-
 
             </div>
         </main>

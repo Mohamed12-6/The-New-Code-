@@ -95,12 +95,14 @@ export default function Contact() {
                     </div>
 
                     <div className="flex justify-center">
-                        <button
-                            type="submit"
-                            className="w-40 py-3 rounded-md bg-gradient-to-r from-blue-700 to-blue-500 text-white font-medium shadow-md hover:opacity-90 transition"
-                        >
-                            أرسل طلبك
-                        </button>
+  <button
+    className="text-[24px] text-white py-2 px-20 rounded-md shadow font-['Tajawal'] font-[500] 
+               bg-gradient-to-r from-[#04356F] to-[#0866D5] 
+               hover:from-[#032a58] hover:to-[#0650a8] 
+               transition duration-300 cursor-pointer" 
+  >
+   ارسل طلبك
+  </button>
                     </div>
 
                     {submitted && (

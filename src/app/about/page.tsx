@@ -1,3 +1,4 @@
+import Link from "next/link";
 import logo from "/public/00bd2918836832cef79b9ec3b4df0cd2b80e3033.jpg";
 import Image from "next/image";
 
@@ -24,9 +25,16 @@ export default function About() {
                 <p className="text-gray-700 mb-5 text-[20px] font-['Inter'] font-[500] ">
                     توقّف عن القلق بشأن مشاكل التكنولوجيا وركز على عملك، دعونا نقدم الدعم الذي تستحقه.
                 </p>
-                <button className="bg-blue-800 text-[24px] hover:bg-blue-900 transition text-white py-2 px-20 rounded-md shadow font-['Tajawal'] font-[500]">
-                    اتصل الآن
-                </button>
+                <Link href="/contact">
+                    <button
+                        className="text-[24px] text-white py-2 px-20 rounded-md shadow font-['Tajawal'] font-[500] 
+               bg-gradient-to-r from-[#04356F] to-[#0866D5] 
+               hover:from-[#032a58] hover:to-[#0650a8] 
+               transition duration-300 cursor-pointer"
+                    >
+                        اتصل الآن
+                    </button>
+                </Link>
             </section>
 
             <div className="relative w-full h-80">
