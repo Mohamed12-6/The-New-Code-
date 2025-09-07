@@ -67,6 +67,14 @@ const team = [{
     img: teamImg,
 },
 ];
+  const services = [
+ { title: "UI/UX DESIGN", img: "/2.jpg" },
+                            { title: "تصميم وبرمجة مواقع إلكترونية", img: "/4.jpg" },
+                            { title: "GRAPHIC DESIGN", img: "/1.jpg" },
+                            { title: "GRAPHIC DESIGN", img: "/e0b2ea6f0b906542cb0044f14a2b9aa949008fe0.jpg" },
+                            { title: "برمجة الألعاب", img: "/5.jpg" },
+                            { title: "برمجة وتصميم تطبيقات", img: "/3.jpg" },
+  ];
 const testimonials = [
     {
         name: "نداء أحمد",
@@ -206,7 +214,37 @@ export default function Home() {
 
 
 
-                <Services></Services>
+<section className="w-full py-16 bg-white">
+  <h2 className="text-3xl font-[Tajawal] font-medium text-gray-800 mb-12 text-center">
+    خدماتنا
+  </h2>
+
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
+    {services.map((service, i) => (
+      <div
+        key={i}
+        className="group relative rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden"
+      >
+        <div className="h-40 overflow-hidden">
+          <Image
+            src={service.img}
+            alt={service.title}
+            width={300}
+            height={160}
+            className="object-cover w-full h-40 rounded-t-2xl transform transition-transform duration-500 group-hover:scale-110"
+          />
+        </div>
+        <div className="p-4 relative z-10">
+          <h3 className="text-xl font-[Tajawal] font-bold text-gray-800 group-hover:text-blue-700 transition-colors duration-300">
+            {service.title}
+          </h3>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+      </div>
+    ))}
+  </div>
+</section>
+
 
 
 
