@@ -95,7 +95,7 @@ const testimonials = [
 
 
 export default function Home() {
-    const [activeBtn, setActiveBtn] = useState(null);
+    const [activeBtn, setActiveBtn] = useState<"next" | "prev" | null>(null);
 
     const [index, setIndex] = useState(0);
     const nextTestimonial = () => {
